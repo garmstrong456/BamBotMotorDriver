@@ -5,3 +5,8 @@ flipM2 KEYWORD2
 setM1Speed KEYWORD2
 setM2Speed KEYWORD2
 setSpeeds KEYWORD2
+attachEncoders KEYWORD2
+motor1Position KEYWORD2
+motor2Position KEYWORD2
+motor1PositionReset KEYWORD2
+motor2PositionReset KEYWORD2
