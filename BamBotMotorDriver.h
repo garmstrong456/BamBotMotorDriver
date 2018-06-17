@@ -61,7 +61,7 @@ class BamBotMotorDriver
 		static portMUX_TYPE _mux;
 
 		//Interrupt service routine
-		static void IRAM_ATTR _updatePosition(int encoder);
+		static void IRAM_ATTR _updatePosition();
 };
 
 #endif
