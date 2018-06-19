@@ -21,6 +21,9 @@ void BamBotMotorDriver::init(byte M1Pwm,
 	_M1Dir = M1Dir;
 	_M2Pwm = M2Pwm;
 	_M2Dir = M2Dir;
+	
+	_flipM1 = false;
+	_flipM2 = false;
 
   // I drive the pins low here over and over because the Pololu driver does
   //this to avoid ever driving the pins high by mistake. It seems there are
@@ -63,6 +66,9 @@ void BamBotMotorDriver::init(Adafruit_MCP23008 mcp,
 	_M1Dir = M1Dir;
 	_M2Pwm = M2Pwm;
 	_M2Dir = M2Dir;
+	
+	_flipM1 = false;
+	_flipM2 = false;
 
   // I drive the pins low here over and over because the Pololu driver does
   //this to avoid ever driving the pins high by mistake. It seems there are
@@ -96,11 +102,11 @@ Motor Drive
 void BamBotMotorDriver::setM1Speed(int speed)
 {
 	//set reverse to true if one, but not both of these conditions are true
-	bool reverse = ((speed < 0) ^ _flipM1);
+	bool reverse = (!(speed < 0) != !_flipM1);
 
 	//constrain speed to be between 0 and 400
 	speed = abs(speed);
-	if (speed = 400) {
+	if (speed > 400) {
 		speed = 400;
 	}
 
@@ -119,7 +125,7 @@ void BamBotMotorDriver::setM1Speed(int speed)
 void BamBotMotorDriver::setM2Speed(int speed)
 {
 	//set reverse to true if one, but not both of these conditions are true
-	bool reverse = ((speed < 0) ^ _flipM2);
+	bool reverse = (!(speed < 0) != !_flipM2);
 
 	//constrain speed to be between 0 and 400
 	speed = abs(speed);

@@ -5,7 +5,7 @@
 #include <Adafruit_MCP23008.h>
 
 //Default PWM channels, precision and frequency
-#define M1CHN 1
+#define M1CHN 5
 #define M2CHN 2
 #define PWM_PRECISION 13
 #define PWM_FREQUENCY 5000
