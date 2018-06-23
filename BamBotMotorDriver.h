@@ -9,6 +9,7 @@
 #define M2CHN 2
 #define PWM_PRECISION 13
 #define PWM_FREQUENCY 5000
+#define DEADBAND 80*8191/400
 
 class BamBotMotorDriver
 {

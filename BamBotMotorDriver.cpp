@@ -165,7 +165,13 @@ void BamBotMotorDriver::flipM2(bool flip)
 //Private PWM function
 //Set the PWM output using the ledcWrite function
 void BamBotMotorDriver::_setPWM(uint8_t channel, uint32_t value) {
-	uint32_t duty = (8191/400)*value;
+	
+	uint32_t duty;
+	if (value == 0) {
+		duty = 0;
+	} else {
+		duty = (8191 - DEADBAND)*value/400 + DEADBAND;
+	}
 	ledcWrite(channel, duty);
 }
 
