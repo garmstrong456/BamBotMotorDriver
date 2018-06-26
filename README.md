@@ -17,9 +17,9 @@ Set the speed for both motors at once
 Set the reverse flag for a motor
 
 ### Encoder functions:
-#### attachEncoders(pin1A, pin1B, pin2A, pin2B)
+##### attachEncoders(pin1A, pin1B, pin2A, pin2B)
 Initialize the encoders using the pins provided
-#### motor1Position(), motor2Position()
+##### motor1Position(), motor2Position()
 Returns the current position of motor 1 or 2
-#### motor1ResetPosition(), motor2ResetPosition()
+##### motor1ResetPosition(), motor2ResetPosition()
 Sets motor 1 or 2 position to 0
