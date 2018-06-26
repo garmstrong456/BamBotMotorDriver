@@ -1,5 +1,7 @@
 # Arduino library for the Pololu DRV8835 Dual Motor Driver Shield
-Customized for the Idea7 Bambot
+Based on the Pololu DRV8835MotorShield library
+Customized for the Idea7 Bambot by Greg Armstrong, June 2018
+See pololu.com for the original code
 
 ### Function reference
 #### Motor functions:
