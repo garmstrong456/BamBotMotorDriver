@@ -31,10 +31,11 @@ class BamBotMotorDriver
 		 
 		 //Encoder functions
 		void attachEncoders(byte pin1A, byte pin1B, byte pin2A, byte pin2B);
-		int motor1Position();
-		int motor2Position();
+		float motor1Position();
+		float motor2Position();
 		void motor1ResetPosition();
 		void motor2ResetPosition();
+		void setEncoderCalibrations(float enc1Cal, float enc2Cal);
 
 	private:
 		void _setPWM(uint8_t channel, uint32_t value);
@@ -51,6 +52,9 @@ class BamBotMotorDriver
 		static byte _enc1PinB;
 		static byte _enc2PinA;
 		static byte _enc2PinB;
+
+		static float _enc1Cal;
+		static float _enc2Cal;
 
 		//Anything referenced by an ISR must be declared volatile to prevent the compiler
 		//from applying optimizations that will keep the value from being properly updated
