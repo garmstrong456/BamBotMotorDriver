@@ -5,30 +5,30 @@
 #include <Adafruit_MCP23008.h>
 
 //Default PWM channels, precision and frequency
-#define M1CHN 5
-#define M2CHN 2
+#define M1CHN 15
+#define M2CHN 12
 #define PWM_PRECISION 13
 #define PWM_FREQUENCY 5000
 #define DEADBAND 80*8191/400
 
 class BamBotMotorDriver
 {
-	public:	  
+	public:
 		void init(byte M1Pwm = 3,
-						byte M1Dir = 1, 
-						byte M2Pwm = 17, 
+						byte M1Dir = 1,
+						byte M2Pwm = 17,
 						byte M2Dir = 16);
 		void init(Adafruit_MCP23008 mcp,
 						byte M1Pwm = 3,
-						byte M1Dir = 7, 
-						byte M2Pwm = 1, 
+						byte M1Dir = 7,
+						byte M2Pwm = 1,
 						byte M2Dir = 6);
 		void setM1Speed(int speed);
 		void setM2Speed(int speed);
 		void setSpeeds(int m1Speed, int m2Speed);
 		void flipM1(boolean flip);
 		void flipM2(boolean flip);
-		 
+
 		 //Encoder functions
 		void attachEncoders(byte pin1A, byte pin1B, byte pin2A, byte pin2B);
 		int motor1Position();
