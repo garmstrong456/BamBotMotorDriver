@@ -190,6 +190,9 @@ volatile int BamBotMotorDriver::_position2;
 volatile byte BamBotMotorDriver::_state1;
 volatile byte BamBotMotorDriver::_state2;
 
+float BamBotMotorDriver::_enc1Cal;
+float BamBotMotorDriver::_enc2Cal;
+
 portMUX_TYPE BamBotMotorDriver::_mux = portMUX_INITIALIZER_UNLOCKED;
 
 //Initialize the encoders
@@ -221,12 +224,12 @@ void BamBotMotorDriver::attachEncoders(byte pin1A, byte pin1B, byte pin2A, byte 
 }
 
 //Return the position for each motor
-int BamBotMotorDriver::motor1Position() {
-	return _position1;
+float BamBotMotorDriver::motor1Position() {
+	return _position1 * _enc1Cal;
 }
 
-int BamBotMotorDriver::motor2Position() {
-	return _position2;
+float BamBotMotorDriver::motor2Position() {
+	return _position2 * _enc2Cal;
 }
 
 //Reset the position to 0
@@ -236,6 +239,13 @@ void BamBotMotorDriver::motor1ResetPosition() {
 
 void BamBotMotorDriver::motor2ResetPosition() {
 	_position2 = 0;
+}
+
+//Set calibrations
+
+void BamBotMotorDriver::setEncoderCalibrations(float enc1Ca, float enc2Ca){
+	_enc1Cal = enc1Ca;
+	_enc2Cal = enc2Ca;
 }
 
 
