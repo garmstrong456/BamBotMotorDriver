@@ -9,15 +9,15 @@
 #define M2CHN 12
 #define PWM_PRECISION 13
 #define PWM_FREQUENCY 5000
-#define DEADBAND 80*8191/400
-
+//#define DEADBAND 80*8191/400
+#define DEADBAND 0
 class BamBotMotorDriver
 {
 	public:
 		void init(byte M1Pwm = 3,
 						byte M1Dir = 1,
-						byte M2Pwm = 17,
-						byte M2Dir = 16);
+						byte M2Pwm = 16,
+						byte M2Dir = 17);
 		void init(Adafruit_MCP23008 mcp,
 						byte M1Pwm = 3,
 						byte M1Dir = 7,
