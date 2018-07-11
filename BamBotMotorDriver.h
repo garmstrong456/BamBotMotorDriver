@@ -37,6 +37,10 @@ class BamBotMotorDriver
 		void motor2ResetPosition();
 
 	private:
+#ifdef MCP_ASYNC
+		void setM1Speed(int speed, bool sync);
+		void setM2Speed(int speed, bool sync);
+#endif
 		void _setPWM(uint8_t channel, uint32_t value);
 		bool _USING_MCP;
 		Adafruit_MCP23008 _MCP;
