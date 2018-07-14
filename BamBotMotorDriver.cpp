@@ -158,6 +158,33 @@ void BamBotMotorDriver::init(Adafruit_MCP23008 mcp,
   ledcAttachPin(_M2Pwm, M2CHN);
 }
 
+//Initialize the motors using the alternate (red) driver board
+void BamBotMotorDriver::initRed(byte M1A,
+										byte M1B,
+										byte M2A,
+										byte M2B)
+{
+	_M1Pwm = M1A;
+	_M1Dir = M1B;
+	_M2Pwm = M2A;
+	_M2Dir = M2B;
+	
+	_flipM1 = false;
+	_flipM2 = false;
+	
+	ledcSetup(M1CHN, PWM_FREQUENCY, PWM_PRECISION);
+	ledcAttachPin(_M1Pwm, M1CHN);
+	
+	ledcSetup(M1CHNB, PWM_FREQUENCY, PWM_PRECISION);
+	ledcAttachPin(_M1Dir, M1CHNB);
+	
+	ledcSetup(M2CHN, PWM_FREQUENCY, PWM_PRECISION);
+	ledcAttachPin(_M2Pwm, M2CHN);
+	
+	ledcSetup(M2CHNB, PWM_FREQUENCY, PWM_PRECISION);
+	ledcAttachPin(_M2Dir, M2CHNB);
+}
+
 /**********
 Motor Drive
 ***********/
@@ -243,6 +270,45 @@ void BamBotMotorDriver::setSpeeds(int m1Speed, int m2Speed){
   setM1Speed(m1Speed);
   setM2Speed(m2Speed);
 #endif
+}
+
+void BamBotMotorDriver::setM1SpeedRed(int speed) {
+
+	bool reverse = ((speed < 0) ^ _flipM1);
+	speed = abs(speed);
+	if (speed > 400) {
+		speed = 400;
+	}
+	
+	if (reverse) {
+		_setPWM(M1CHN, 0);
+		_setPWM(M1CHNB, speed);
+	} else {
+		_setPWM(M1CHN, speed);
+		_setPWM(M1CHNB, 0);
+	}
+}
+
+void BamBotMotorDriver::setM2SpeedRed(int speed) {
+
+	bool reverse = ((speed < 0) ^ _flipM2);
+	speed = abs(speed);
+	if (speed > 400) {
+		speed = 400;
+	}
+	
+	if (reverse) {
+		_setPWM(M2CHN, 0);
+		_setPWM(M2CHNB, speed);
+	} else {
+		_setPWM(M2CHN, speed);
+		_setPWM(M2CHNB, 0);
+	}
+}
+
+void BamBotMotorDriver::setSpeedsRed(int m1Speed, int m2Speed) {
+	setM1SpeedRed(m1Speed);
+	setM2SpeedRed(m2Speed);
 }
 
 //Set the reverse flag for the motors
